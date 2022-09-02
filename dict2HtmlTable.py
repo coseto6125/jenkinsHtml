@@ -2,7 +2,7 @@
 # @Author: E-NoR
 # @Date:   2022-09-02 23:58:53
 # @Last Modified by:   E-NoR
-# @Last Modified time: 2022-09-03 02:42:43
+# @Last Modified time: 2022-09-03 02:51:05
 
 from html import unescape
 from datetime import timezone, datetime
@@ -55,8 +55,7 @@ def dictionaryToHTMLTable(dict: dict):
     """
     cover dict to html table
     """
-    def border(
-        x): return f';border: {x}px solid #FED7DD; border-collapse: collapse;text-align: center;padding: 15px'
+    border = lambda x: f';border: {x}px solid #FED7DD; border-collapse: collapse;text-align: center;padding: 15px'
     html = HTML(Header=dict.keys(),
                 tableStyles={'margin': f'3px auto{border(2)};width: 80%'},
                 trStyles={'background-color': f'#99F2E6{border(1)}'},
