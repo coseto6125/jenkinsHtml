@@ -2,7 +2,7 @@
 # @Author: E-NoR
 # @Date:   2022-09-02 23:58:53
 # @Last Modified by:   E-NoR
-# @Last Modified time: 2022-09-03 02:51:05
+# @Last Modified time: 2022-09-03 03:04:02
 
 from html import unescape
 from datetime import timezone, datetime
@@ -13,8 +13,8 @@ class HTML:
         trStyles = HTML._styleConverter(trStyles)
         thStyles = HTML._styleConverter(thStyles)
         self.rows = []
-        header2 = ''.join(f'\n<th {thStyles} >{th}</th>' for th in Header)
-        self.header2 = f'<tr {trStyles} >{header2}\n</tr>'
+        header = ''.join(f'\n<th {thStyles} >{th}</th>' for th in Header)
+        self.header = f'<tr {trStyles} >{header}\n</tr>'
         self.tableStyles = HTML._styleConverter(tableStyles)
 
     @staticmethod
@@ -53,7 +53,7 @@ class HTML:
 
 def dictionaryToHTMLTable(dict: dict):
     """
-    cover dict to html table
+    convert dict to html table
     """
     border = lambda x: f';border: {x}px solid #FED7DD; border-collapse: collapse;text-align: center;padding: 15px'
     html = HTML(Header=dict.keys(),
@@ -154,5 +154,5 @@ if __name__ == '__main__':
     &lt;/table>
     '''
 
-    print(unescape(loadDescriptions))
+    # print(unescape(loadDescriptions))
     print(dictionaryToHTMLTable(myDict))
