@@ -19,7 +19,7 @@ class HTML:
 
     @staticmethod
     def _styleConverter(styleDict: dict):
-        if styleDict == {}:
+        if not styleDict:
             return ''
         styles = ''.join(f'{style}: {value};' for [
                          style, value] in styleDict.items())
@@ -41,14 +41,7 @@ class HTML:
         theTime = datetime.now()
         utcTime = theTime.astimezone(timezone.utc).strftime(tFormat)
         gmt8 = datetime.strftime(theTime, tFormat)
-        content = (
-            f'<h1 style="text-align: center;"> [{gmt8} -- GMT+8]    [{utcTime} -- utc]</h1>\n'
-            f'<table {self.tableStyles}>\n'
-            f'{self.header}'
-            f'{"".join(self.rows)}'
-            '</table>'
-        )
-        return content
+        return f'<h1 style="text-align: center;"> [{gmt8} -- GMT+8]    [{utcTime} -- utc]</h1>\n<table {self.tableStyles}>\n{self.header}{"".join(self.rows)}</table>'
 
 
 def dictionaryToHTMLTable(dict: dict):
@@ -64,8 +57,13 @@ def dictionaryToHTMLTable(dict: dict):
         # print(row)
         BGC, TC = ('#FFACBB', 'DarkGreen') if i % 2 == 0 else (
             '#AAB6FB', 'Navy')
-        html.addRow(row, trStyles={f'background-color': f'{BGC}{border(1)};color:{TC};font-size:26px'},
-                    tdStyles={'padding': f'1rem{border(1)};color:{TC};font-size:26px'})
+        html.addRow(
+            row,
+            trStyles={
+                'background-color': f'{BGC}{border(1)};color:{TC};font-size:26px'
+            },
+            tdStyles={'padding': f'1rem{border(1)};color:{TC};font-size:26px'},
+        )
     return html
 
 
